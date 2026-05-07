@@ -1,6 +1,6 @@
 export const THEME_STORAGE_KEY = "theme";
 export const THEME_MANUAL_KEY = "theme_manual_override";
-export const THEME_CHANGE_EVENT = "luolei-theme-change";
+export const THEME_CHANGE_EVENT = "shumrain-theme-change";
 
 const LIGHT_THEME_COLOR = "#ffffff";
 const DARK_THEME_COLOR = "#1e1e20";

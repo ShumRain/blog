@@ -1,5 +1,5 @@
-export const ROUTE_TRANSITION_START_EVENT = "luolei:route-transition-start";
-export const ROUTE_TRANSITION_COMPLETE_EVENT = "luolei:route-transition-complete";
+export const ROUTE_TRANSITION_START_EVENT = "shumrain:route-transition-start";
+export const ROUTE_TRANSITION_COMPLETE_EVENT = "shumrain:route-transition-complete";
 
 interface RouteTransitionDetail {
   href?: string;

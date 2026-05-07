@@ -30,17 +30,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // 分类及分类分页
   for (const category of categoryMap) {
-    const categoryPosts =
-      category.text === "hot"
-        ? posts
-        : posts.filter((post) => post.categories.includes(category.text));
+    const categoryPosts = posts.filter((post) =>
+      post.categories.includes(category.text),
+    );
 
     if (categoryPosts.length === 0) continue;
 
-    const categoryLastModified =
-      category.text === "hot"
-        ? latestPostDate
-        : new Date(categoryPosts[0].dateTime);
+    const categoryLastModified = new Date(categoryPosts[0].dateTime);
 
     const categoryPageTotal = Math.max(
       1,

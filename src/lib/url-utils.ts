@@ -1,10 +1,10 @@
 /**
  * Shared URL parsing utilities.
- * Used by ai-chat-box and search-command.
+ * Used by search-command and optional social URL parsing helpers.
  */
 
 const X_HOSTS = new Set(["x.com", "twitter.com", "mobile.twitter.com"]);
-const BLOG_HOSTS = new Set(["luolei.org", "www.luolei.org"]);
+const BLOG_HOSTS = new Set(["shumrain-blog.shumrainchen.workers.dev"]);
 
 export function parseXUrl(rawUrl: string): URL | null {
   try {

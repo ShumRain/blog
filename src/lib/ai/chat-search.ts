@@ -3,7 +3,7 @@ import {
   searchDocuments,
   type SearchDocument,
   type SearchIndexedDocument,
-} from "@luoleiorg/search-core";
+} from "@shumrain/search-core";
 import { getAISummary } from "@/lib/content/ai-data";
 import { getSearchDocuments } from "@/lib/content/posts";
 import {

@@ -2,9 +2,8 @@
 
 import { useCallback, useRef, useState } from "react";
 import { Menu } from "lucide-react";
-import { siteConfig } from "@/lib/site-config";
 import { useClickOutside } from "@/hooks/use-click-outside";
-import { IconGitHub, IconX } from "@/components/icons";
+import { IconGitHub } from "@/components/icons";
 import { SiteHeaderAboutLink } from "./site-header-about-link";
 
 export function SiteHeaderMobileMenu() {
@@ -29,15 +28,6 @@ export function SiteHeaderMobileMenu() {
       {open && (
         <div className="absolute right-0 top-10 z-40 w-44 rounded-lg border border-zinc-200 bg-white p-1.5 shadow-xl dark:border-zinc-700 dark:bg-zinc-900">
           <a
-            href={siteConfig.social.youtube}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={close}
-            className="flex items-center justify-between rounded-md px-2 py-1.5 text-sm transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
-          >
-            <span>{siteConfig.brand}</span>
-          </a>
-          <a
             href="/rss.xml"
             target="_blank"
             rel="noopener noreferrer"
@@ -48,17 +38,7 @@ export function SiteHeaderMobileMenu() {
           </a>
           <SiteHeaderAboutLink mobile />
           <a
-            href={siteConfig.social.twitter}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={close}
-            className="flex items-center justify-between rounded-md px-2 py-1.5 text-sm transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
-          >
-            <span>X</span>
-            <IconX className="h-4 w-4" />
-          </a>
-          <a
-            href={siteConfig.social.github}
+            href="https://github.com/ShumRain"
             target="_blank"
             rel="noopener noreferrer"
             onClick={close}

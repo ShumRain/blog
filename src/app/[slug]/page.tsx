@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ArticleBottomNav } from "@/components/article-bottom-nav";
-import { ArticleComment } from "@/components/article-comment";
 import { ArticleCopyright } from "@/components/article-copyright";
 import { ArticleMeta } from "@/components/article-meta";
 import { ArticleToc } from "@/components/article-toc";
@@ -13,11 +12,7 @@ import {
   getPostSiblings,
   getPostSummaryBySlug,
 } from "@/lib/content/posts";
-import { ArticleAISummary } from "@/components/article-ai-summary";
-import { ArticleChatBootstrap } from "@/components/article-chat-bootstrap";
 import { ScrollToTop } from "@/components/scroll-to-top";
-import { getAISeo, getAISummary } from "@/lib/content/ai-data";
-import { getArticleChatGuideWithFallback } from "@/lib/content/article-chat-guides";
 import { categoryMap, siteConfig } from "@/lib/site-config";
 
 const categoryNameMap = new Map<string, string>(
@@ -53,13 +48,10 @@ export async function generateMetadata({
 
   const articleUrl = `${siteConfig.siteUrl}/${post.slug}`;
   const coverUrl = post.cover ? toAbsoluteUrl(post.cover) : undefined;
-  const aiSeo = getAISeo(slug);
   const publishedISO = new Date(post.dateTime).toISOString();
 
-  // AI SEO 数据优先，fallback 到原始 excerpt
-  const description = aiSeo?.metaDescription ?? post.excerpt;
-  const ogDescription = aiSeo?.ogDescription ?? post.excerpt;
-  const keywords = aiSeo?.keywords;
+  const description = post.excerpt;
+  const ogDescription = post.excerpt;
 
   // OG 图片带尺寸信息，提升社交卡片命中率
   const ogImages = coverUrl
@@ -69,7 +61,6 @@ export async function generateMetadata({
   return {
     title: post.title,
     description,
-    ...(keywords ? { keywords } : {}),
     alternates: {
       canonical: articleUrl,
     },
@@ -86,8 +77,6 @@ export async function generateMetadata({
     },
     twitter: {
       card: coverUrl ? "summary_large_image" : "summary",
-      site: `@${siteConfig.author.twitterUsername}`,
-      creator: `@${siteConfig.author.twitterUsername}`,
       title: post.title,
       description: ogDescription,
       ...(coverUrl ? { images: [coverUrl] } : {}),
@@ -101,14 +90,6 @@ export default async function PostPage({ params }: PostPageProps) {
   if (!post) notFound();
 
   const siblings = getPostSiblings(slug);
-  const aiSummary = getAISummary(slug);
-  const aiSeo = getAISeo(slug);
-  const articleChatGuide = getArticleChatGuideWithFallback({
-    slug,
-    title: post.title,
-    categories: post.categories,
-    aiSummary,
-  });
   const canonicalUrl = `${siteConfig.siteUrl}/${post.slug}`;
   const primaryCategory = post.categories.find(
     (category) => category !== "hot" && categoryNameMap.has(category),
@@ -122,7 +103,7 @@ export default async function PostPage({ params }: PostPageProps) {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
-    description: aiSeo?.metaDescription ?? post.excerpt,
+    description: post.excerpt,
     inLanguage: "zh-CN",
     datePublished: new Date(post.dateTime).toISOString(),
     dateModified: new Date(post.dateTime).toISOString(),
@@ -137,12 +118,7 @@ export default async function PostPage({ params }: PostPageProps) {
       "@type": "Person",
       name: siteConfig.author.name,
       url: siteConfig.siteUrl,
-      sameAs: [
-        siteConfig.social.github,
-        `https://x.com/${siteConfig.author.twitterUsername}`,
-        siteConfig.social.youtube,
-        siteConfig.social.bilibili,
-      ],
+      sameAs: [siteConfig.social.github],
     },
     publisher: {
       "@type": "Organization",
@@ -150,7 +126,7 @@ export default async function PostPage({ params }: PostPageProps) {
       url: siteConfig.siteUrl,
       logo: {
         "@type": "ImageObject",
-        url: `${siteConfig.siteUrl}/legacy/favicon.png`,
+        url: `${siteConfig.siteUrl}/logo.svg`,
       },
     },
   };
@@ -197,18 +173,7 @@ export default async function PostPage({ params }: PostPageProps) {
       />
       <div className="flex flex-col lg:flex-row lg:gap-12">
         <section className="min-w-0 flex-1 lg:max-w-[860px]">
-          <ArticleChatBootstrap guide={articleChatGuide} />
           <ArticleMeta post={post} />
-          {aiSummary && (
-            <ArticleAISummary
-              summary={aiSummary}
-              share={{
-                slug: post.slug,
-                title: post.title,
-                articleUrl: canonicalUrl,
-              }}
-            />
-          )}
           <ContentEnhancer />
 
           <article className="article-body article-content mt-6 pb-6 lg:pb-12 ">
@@ -221,7 +186,6 @@ export default async function PostPage({ params }: PostPageProps) {
             slug={post.slug}
           />
           <ArticleBottomNav prev={siblings.prev} next={siblings.next} />
-          <ArticleComment slug={post.slug} title={post.title} />
         </section>
         <ArticleToc headings={post.headings} />
       </div>

@@ -9,12 +9,12 @@ interface AboutProofsProps {
   postCovers: Record<string, string>;
 }
 
-/** Extract slug from a luolei.org post URL */
+/** Extract slug from a shumrain-blog.shumrainchen.workers.dev post URL */
 function extractSlug(url: string): string | null {
   try {
     const u = new URL(url);
     if (u.hostname !== new URL(siteConfig.siteUrl).hostname) return null;
-    // URL pattern: https://luolei.org/{slug}
+    // URL pattern: https://shumrain-blog.shumrainchen.workers.dev/{slug}
     const slug = u.pathname.replace(/^\/|\/$/g, "");
     return slug || null;
   } catch {

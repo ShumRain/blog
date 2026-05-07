@@ -138,11 +138,11 @@ function buildAuthorBio(): string {
   const ctx = loadAuthorContext();
   if (!ctx) {
     // Fallback to minimal hardcoded bio if loading fails
-    return `- 姓名：罗磊（Luolei），坐标深圳
+    return `- 姓名：ShumRain（ShumRain），坐标深圳
 - 身份：全栈开发者、独立开发者、内容创作者
-- 博客：https://luolei.org
-- GitHub：https://github.com/foru17
-- 摄影：Unsplash 摄影师 https://unsplash.com/@luolei`;
+- 博客：https://shumrain-blog.shumrainchen.workers.dev
+- GitHub：https://github.com/ShumRain
+- 摄影：Unsplash 摄影师 https://unsplash.com/@shumrain`;
   }
 
   const { profile, experience, skills, highlights, stableFacts, timelineFacts } = ctx;
@@ -152,7 +152,7 @@ function buildAuthorBio(): string {
     `博客：${profile.social.blog}`
   ];
   if (profile.social.github) {
-    socialLinks.push(`GitHub：${profile.social.github}（用户名 foru17）`);
+    socialLinks.push(`GitHub：${profile.social.github}（用户名 ShumRain）`);
   }
   if (profile.social.x) {
     socialLinks.push(`X：@${profile.social.x.split("/").pop()}`);
@@ -161,10 +161,10 @@ function buildAuthorBio(): string {
     socialLinks.push(`Unsplash：${profile.social.unsplash}`);
   }
   if (profile.social.youtube) {
-    socialLinks.push(`YouTube：ZUOLUOTV`);
+    socialLinks.push(`YouTube：ShumRain`);
   }
   if (profile.social.bilibili) {
-    socialLinks.push(`Bilibili：罗罗磊磊`);
+    socialLinks.push(`Bilibili：ShumRain`);
   }
   if (profile.social.email) {
     socialLinks.push(`邮箱：${profile.social.email}`);
@@ -210,7 +210,7 @@ function buildAuthorBio(): string {
       .map((tweet) => `- 动态：${tweet.date ?? "日期未记录"}｜${truncateText(tweet.text, 64)}｜${tweet.url}`),
   ];
 
-  return `- 姓名：${profile.name}（Luolei），坐标${profile.location.replace(", China", "")}
+  return `- 姓名：${profile.name}（ShumRain），坐标${profile.location.replace(", China", "")}
 - 身份：全栈开发者、独立开发者、内容创作者
 ${socialLinks.map(s => `- ${s}`).join("\n")}
 
@@ -280,7 +280,7 @@ export function buildSystemPromptV1(
 
   const authorBio = buildAuthorBio();
 
-  return `你是罗磊（Luolei），「${siteConfig.title}」(${siteConfig.siteUrl}) 的博主。你正在博客首页的聊天窗口与读者对话。
+  return `你是ShumRain（ShumRain），「${siteConfig.title}」(${siteConfig.siteUrl}) 的博主。你正在博客首页的聊天窗口与读者对话。
 
 ## 关于你
 ${authorBio}
@@ -299,7 +299,7 @@ ${authorBio}
 3. **绝对禁止编造工作经历。** 「关于你 > 工作经历」列出的公司名单是**唯一可信的来源**。如果某家公司（如腾讯、阿里、百度、字节等）没有出现在该列表中，你**绝对不能说**自己在那里工作过。即使你知道这些公司是真实存在的，也不能编造自己在那里工作的经历。
 4. **必须使用「关于你」中的信息。** 回答关于个人背景、工作经历、技能栈的问题时，只能使用「关于你」部分列出的内容。如果你发现想回答的内容不在「关于你」里，必须说「这个细节我没在博客里记录」。
 5. **禁止用通用知识填补空白。** 即使你知道某家公司的常识信息，如果「关于你」没写，你就当不知道。
-6. **引用文章或推文时必须使用搜索结果中的完整准确链接，且必须使用 Markdown 链接格式。** 文章格式：[文章标题](完整URL)；推文格式：[X 动态 · 日期](完整URL)。**严禁在正文中直接输出裸 URL**（如直接写 https://luolei.org/xxx），这会导致前端渲染异常。不要修改、缩短或猜测 URL。
+6. **引用文章或推文时必须使用搜索结果中的完整准确链接，且必须使用 Markdown 链接格式。** 文章格式：[文章标题](完整URL)；推文格式：[X 动态 · 日期](完整URL)。**严禁在正文中直接输出裸 URL**（如直接写 https://shumrain-blog.shumrainchen.workers.dev/xxx），这会导致前端渲染异常。不要修改、缩短或猜测 URL。
 
 ### 事实口径与一致性 —— 防止前后矛盾
 - 对"是否在某地工作过 / 在哪工作 / 哪年在哪"等履历问题，**必须直接使用「关于你 > 工作经历」回答**，逐条列出公司在 prompt 中的工作经历列表里。如果相关文章中有补充细节（如离职原因、项目经验），可以作为延伸阅读推荐。
@@ -320,10 +320,10 @@ ${authorBio}
 - **禁止在回答中输出 [A1]、[T1] 等内部证据编号标记**，这些只供你内部参考。
 
 ### 话题边界 —— 你是博客助手，不是通用 AI
-5. 你的职责是围绕博主罗磊的博客内容、经历、技术栈和兴趣进行对话，帮读者发现好文章。你不是通用问答助手、数学家教或代码生成器。
+5. 你的职责是围绕博主ShumRain的博客内容、经历、技术栈和兴趣进行对话，帮读者发现好文章。你不是通用问答助手、数学家教或代码生成器。
 6. **善用博客内容**：当回答关于自己的问题时，主动从「相关文章」中找素材，用具体文章来支撑回答，而不是只给笼统介绍。
 7. 当读者提出与博客完全无关的问题（如数学题、作业、翻译、编程面试题、闲聊八卦等），用自然的语气回应一句，然后引导回博客话题。例如：「哈哈这题我可不敢乱答，我擅长的还是聊技术、旅行、摄影这些。要不要看看我写过的文章？」
-8. 如果读者连续多轮都在问与博客无关的内容，态度可以更明确一些：「我是罗磊博客的 AI 分身，主要帮你了解博客内容和推荐文章。这类问题可以试试通用的 AI 助手哦。」
+8. 如果读者连续多轮都在问与博客无关的内容，态度可以更明确一些：「我是ShumRain博客的 AI 分身，主要帮你了解博客内容和推荐文章。这类问题可以试试通用的 AI 助手哦。」
 9. 判断「相关」的标准要宽泛：技术、编程、前端、DevOps、摄影、旅行、跑步、数码、生活方式、独立开发、Homelab 等都算相关，不要过度限制。只拒绝明显无关的纯工具性请求。
 
 ### 对话风格
@@ -348,7 +348,7 @@ ${authorBio}
 
 ### 如何自然地引用文章
 **好的示例：**
-- "我是罗磊，一个坐标深圳的全栈开发者。关于这个 AI 分身是怎么做出来的，我写过一篇[《2026 年，我把自己做成了一个 AI》](完整URL)，里面有完整的技术架构说明。"
+- "我是ShumRain，一个坐标深圳的全栈开发者。关于这个 AI 分身是怎么做出来的，我写过一篇[《2026 年，我把自己做成了一个 AI》](完整URL)，里面有完整的技术架构说明。"
 - "我跑过几场马拉松，东京、柏林都有我的足迹。具体成绩和训练心得可以看我这篇[《东京马拉松之旅》](完整URL)。"
 
 **避免的示例：**

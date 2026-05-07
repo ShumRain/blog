@@ -1,5 +1,3 @@
-const CF_IMAGE_PROXY_HOST = "https://img.is26.com";
-
 export function formatDate(dateInput: string): string {
   const date = new Date(dateInput);
   if (Number.isNaN(date.getTime())) return dateInput;
@@ -35,52 +33,29 @@ function normalizeImageSource(url: string): string {
   return source;
 }
 
-function stripCfTransform(url: string): string {
-  // 移除旧格式 /w=XXX 和新格式 ?variant=wXXX
-  return url
-    .replace(/\?variant=[^&]+/, "")
-    .replace(/\/w=[^/?#]+(?:,[^/?#]+)*$/, "")
-    .replace(/\?$/, "");
-}
-
-function toCfImage(url: string, transform?: string): string {
+function normalizeDisplayImage(url: string): string {
   const source = normalizeImageSource(url);
   if (!source) return "";
 
-  if (source.startsWith("data:") || source.startsWith("blob:")) {
-    return source;
-  }
-
-  if (source.startsWith("/") && !source.startsWith("//")) {
-    return source;
-  }
-
-  if (source.startsWith(`${CF_IMAGE_PROXY_HOST}/`)) {
-    const clean = stripCfTransform(source);
-    return transform ? `${clean}?variant=${transform}` : clean;
-  }
-
-  const raw = source.startsWith("http") ? source : source.replace(/^\/+/, "");
-  const proxied = `${CF_IMAGE_PROXY_HOST}/${raw}`;
-  return transform ? `${proxied}?variant=${transform}` : proxied;
+  return source;
 }
 
 export function getOriginalImage(url: string): string {
-  return toCfImage(url);
+  return normalizeDisplayImage(url);
 }
 
 export function getPreviewImage(url?: string): string {
-if (!url) return "";
-return toCfImage(url, "w=800");
+  if (!url) return "";
+  return normalizeDisplayImage(url);
 }
 
 export function getArticleLazyImage(url: string): string {
-return toCfImage(url, "w=1200");
+  return normalizeDisplayImage(url);
 }
 
 export function getBannerImage(url?: string): string {
-if (!url) return "";
-return toCfImage(url, "w=800");
+  if (!url) return "";
+  return normalizeDisplayImage(url);
 }
 
 // 图片尺寸缓存 - 在构建时由 scripts/fetch-image-dimensions.mjs 生成
@@ -111,11 +86,6 @@ function loadImageDimensionsCache(): Map<string, { width: number; height: number
       for (const [url, dimensions] of Object.entries(cache.images)) {
         // 存储原始 URL 和清理后的 URL
         imageDimensionsCache!.set(url, dimensions);
-        // 也存储去掉转换参数的 URL
-        const cleanUrl = stripCfTransform(url);
-        if (cleanUrl !== url) {
-          imageDimensionsCache!.set(cleanUrl, dimensions);
-        }
       }
     }
   } catch {
@@ -138,13 +108,6 @@ export function getImageDimensions(
   // 尝试直接匹配
   const directMatch = cache.get(url);
   if (directMatch) return directMatch;
-
-  // 尝试清理后的 URL
-  const cleanUrl = stripCfTransform(url);
-  if (cleanUrl !== url) {
-    const cleanMatch = cache.get(cleanUrl);
-    if (cleanMatch) return cleanMatch;
-  }
 
   // 尝试添加/移除协议
   const variations = [

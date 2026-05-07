@@ -14,7 +14,7 @@ importers:
       '@ai-sdk/react':
         specifier: ^3.0.107
         version: 3.0.107(react@19.2.4)(zod@4.3.6)
-      '@luoleiorg/search-core':
+      '@shumrain/search-core':
         specifier: workspace:*
         version: link:packages/search-core
       '@radix-ui/react-dialog':

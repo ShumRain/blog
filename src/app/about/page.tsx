@@ -1,24 +1,18 @@
 import type { Metadata } from "next";
 import { RouteTransitionComplete } from "@/components/route-transition-complete";
-import { getMultiModelProfileData } from "@/lib/content/author-profile";
-import { getAllPosts } from "@/lib/content/posts";
-import { getPreviewImage } from "@/lib/content/utils";
 import { siteConfig } from "@/lib/site-config";
-import { AboutPageClient } from "./client";
 
 export function generateMetadata(): Metadata {
   const canonical = `${siteConfig.siteUrl}/about`;
   return {
     title: "关于",
-    description:
-      "基于博客内容、X 动态与 GitHub 履历的 AI 第三方视角作者画像，支持多 AI 模型视角切换。",
+    description: `关于 ${siteConfig.author.name} 和这个博客。`,
     alternates: {
       canonical,
     },
     openGraph: {
       title: `关于 | ${siteConfig.title}`,
-      description:
-        "基于博客内容、X 动态与 GitHub 履历的 AI 第三方视角作者画像。",
+      description: `关于 ${siteConfig.author.name} 和这个博客。`,
       type: "profile",
       url: canonical,
       siteName: siteConfig.title,
@@ -28,31 +22,37 @@ export function generateMetadata(): Metadata {
 }
 
 export default function AboutPage() {
-  const { manifest, reports } = getMultiModelProfileData();
-
-  // Build slug → cover image map from all posts
-  const postCovers: Record<string, string> = {};
-  for (const post of getAllPosts()) {
-    if (post.cover) {
-      postCovers[post.slug] = getPreviewImage(post.cover);
-    }
-  }
-
-  // Serialize for client component
-  const serializedReports = reports.map((r) => ({
-    modelId: r.model.id,
-    meta: r.meta,
-    report: r.report,
-  }));
-
   return (
     <main className="mx-auto w-full max-w-[980px] px-4 pb-14 pt-8 md:px-8 md:pt-10">
       <RouteTransitionComplete />
-      <AboutPageClient
-        manifest={manifest}
-        reports={serializedReports}
-        postCovers={postCovers}
-      />
+      <section className="rounded-lg border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900 md:p-8">
+        <p className="text-sm font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+          About
+        </p>
+        <h1 className="mt-3 text-3xl font-semibold text-zinc-900 dark:text-zinc-100">
+          {siteConfig.author.name}
+        </h1>
+        <p className="mt-4 max-w-2xl text-base leading-8 text-zinc-600 dark:text-zinc-300">
+          这里是 {siteConfig.title}。它会先从一个干净的个人博客开始，
+          慢慢记录技术、生活和那些值得反复回看的想法。
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3 text-sm">
+          <a
+            href={siteConfig.social.github}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-md border border-zinc-200 px-3 py-1.5 text-zinc-700 transition-colors hover:border-zinc-300 hover:text-zinc-950 dark:border-zinc-800 dark:text-zinc-300 dark:hover:border-zinc-700 dark:hover:text-zinc-100"
+          >
+            GitHub
+          </a>
+          <a
+            href="/rss.xml"
+            className="rounded-md border border-zinc-200 px-3 py-1.5 text-zinc-700 transition-colors hover:border-zinc-300 hover:text-zinc-950 dark:border-zinc-800 dark:text-zinc-300 dark:hover:border-zinc-700 dark:hover:text-zinc-100"
+          >
+            RSS
+          </a>
+        </div>
+      </section>
     </main>
   );
 }

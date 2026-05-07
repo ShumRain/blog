@@ -19,8 +19,8 @@ const POSTS_DIR = path.join(ROOT_DIR, "content", "posts");
 const OUTPUT_REPORT = path.join(DATA_DIR, "author-profile-report.json");
 const OUTPUT_CONTEXT = path.join(DATA_DIR, "author-profile-context.json");
 
-const DEFAULT_SITE_URL = "https://luolei.org";
-const DEFAULT_USERNAME = "luoleiorg";
+const DEFAULT_SITE_URL = "https://shumrain-blog.shumrainchen.workers.dev";
+const DEFAULT_USERNAME = "shumrain";
 
 function parseArgs() {
   const args = process.argv.slice(2);
@@ -326,9 +326,9 @@ function buildRuleBasedReport(context, tweetSource) {
     },
     report: {
       hero: {
-        title: "AI 视角下的罗磊",
+        title: "AI 视角下的ShumRain",
         summary:
-          "如果把他放在技术内容创作者光谱中，罗磊更接近把工程能力、产品审美和生活方式长期结合的全栈实践者。",
+          "如果把他放在技术内容创作者光谱中，ShumRain更接近把工程能力、产品审美和生活方式长期结合的全栈实践者。",
         intro: `从近期内容看，他的核心重心是：${highLevelTopic}。`,
       },
       identities: [
@@ -339,7 +339,7 @@ function buildRuleBasedReport(context, tweetSource) {
             majorProjectNames
               ? `代表项目包括 ${majorProjectNames}。`
               : "持续发布编程与工具类文章和项目。",
-          link: "https://github.com/foru17",
+          link: "https://github.com/ShumRain",
         },
         {
           name: "内容创作者",
@@ -418,7 +418,7 @@ async function generateReportWithAI(context, tweetSource) {
 输出 schema:
 {
   "report": {
-    "hero": {"title":"AI 视角下的罗磊","summary":"...","intro":"..."},
+    "hero": {"title":"AI 视角下的ShumRain","summary":"...","intro":"..."},
     "identities":[{"name":"...","description":"...","evidence":"...","link":"..."}],
     "strengths":[{"title":"...","points":["..."]}],
     "styles":[{"trait":"...","description":"..."}],

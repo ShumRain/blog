@@ -2,13 +2,10 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
-import { IconGitHub, IconX } from "@/components/icons";
-import { AuthorAvatar } from "@/components/chat/chat-avatar";
+import { IconGitHub } from "@/components/icons";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { useScrollThreshold } from "@/hooks/use-scroll-threshold";
-import { useAIChat } from "./ai-chat-provider";
 import { SearchCommand } from "./search-command";
 import { SiteHeaderAboutLink } from "./site-header-about-link";
 import { SiteHeaderMobileMenu } from "./site-header-mobile-menu";
@@ -16,7 +13,6 @@ import { ThemeToggle } from "./theme-toggle";
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const { toggle: toggleAIChat } = useAIChat();
   const isArticlePage =
     pathname !== "/" &&
     !pathname.startsWith("/page/") &&
@@ -45,26 +41,14 @@ export function SiteHeader() {
           href="/"
           className="home-nav-title flex items-center gap-2.5 whitespace-nowrap text-base font-semibold tracking-wide"
         >
-          <Image
-            src="/legacy/logo.png"
-            alt={`${siteConfig.author.name} logo`}
-            width={28}
-            height={28}
-            className="h-7 w-7"
-          />
+          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-zinc-900 text-sm font-semibold text-white dark:bg-zinc-100 dark:text-zinc-900">
+            S
+          </span>
           <span>{siteConfig.title}</span>
         </Link>
         <nav className="flex items-center text-sm text-zinc-600 dark:text-zinc-300">
           <div className="hidden items-center md:flex">
             <div className="flex items-center gap-2.5">
-              <a
-                href={siteConfig.social.youtube}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-1 py-1 transition-colors hover:text-zinc-900 dark:hover:text-zinc-100"
-              >
-                ZUOLUOTV
-              </a>
               <a
                 href="/rss.xml"
                 target="_blank"
@@ -81,16 +65,6 @@ export function SiteHeader() {
             <div className="flex items-center gap-1">
               <ThemeToggle />
               <a
-                href={siteConfig.social.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="X"
-                title="X"
-                className="inline-flex h-8 w-8 items-center justify-center rounded-md text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
-              >
-                <IconX className="h-5 w-5" />
-              </a>
-              <a
                 href={siteConfig.social.github}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -103,29 +77,11 @@ export function SiteHeader() {
             </div>
 
             <div className="ml-3 flex items-center gap-1">
-              <button
-                type="button"
-                onClick={toggleAIChat}
-                className="group relative inline-flex h-8 w-8 items-center justify-center rounded-md text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
-                aria-label="AI 对话"
-                title="AI 对话（Enter）"
-              >
-                <AuthorAvatar size={22} />
-              </button>
               <SearchCommand />
             </div>
           </div>
 
           <div className="flex items-center gap-1 md:hidden">
-            <button
-              type="button"
-              onClick={toggleAIChat}
-              className="inline-flex h-8 w-8 items-center justify-center rounded-md text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
-              aria-label="AI 对话"
-              title="AI 对话"
-            >
-              <AuthorAvatar size={20} />
-            </button>
             <SearchCommand />
             <ThemeToggle />
 

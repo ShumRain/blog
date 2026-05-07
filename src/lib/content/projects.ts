@@ -1,4 +1,4 @@
-import type { SearchDocument } from "@luoleiorg/search-core";
+import type { SearchDocument } from "@shumrain/search-core";
 import githubResumeJson from "../../../data/github-resume.json";
 
 export interface ProjectData {
@@ -18,7 +18,7 @@ export interface ProjectSearchDocument extends SearchDocument {
  * 获取项目搜索文档
  */
 export function getProjectSearchDocuments(): ProjectSearchDocument[] {
-  const projects = githubResumeJson.projects as ProjectData[];
+  const projects = githubResumeJson.projects as unknown as ProjectData[];
 
   return projects.map((project, index) => ({
     id: `project-${index}`,
@@ -38,12 +38,17 @@ export function getProjectSearchDocuments(): ProjectSearchDocument[] {
  * 获取工作经历搜索文档
  */
 export function getExperienceSearchDocuments(): ProjectSearchDocument[] {
-  const experience = githubResumeJson.experience;
+  const experience = githubResumeJson.experience as unknown as Array<{
+    title: string;
+    company: string;
+    period: string;
+    description: string;
+  }>;
 
   return experience.map((exp, index) => ({
     id: `exp-${index}`,
     title: `${exp.title} @ ${exp.company}`,
-    url: githubResumeJson.profile.social.blog || "https://luolei.org",
+    url: githubResumeJson.profile.social.blog || "https://shumrain-blog.shumrainchen.workers.dev",
     excerpt: exp.description,
     content: `${exp.title} ${exp.company} ${exp.period} ${exp.description}`,
     categories: [exp.company],

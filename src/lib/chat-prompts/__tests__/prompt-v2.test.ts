@@ -20,7 +20,7 @@ function createArticle(params: {
 }): ArticleContext {
   return {
     title: params.title,
-    url: `https://luolei.org/${encodeURIComponent(params.title)}`,
+    url: `https://shumrain-blog.shumrainchen.workers.dev/${encodeURIComponent(params.title)}`,
     categories: params.categories,
     summary: params.summary,
     keyPoints: params.keyPoints,
@@ -36,7 +36,7 @@ function createTweet(params: {
 }): TweetContext {
   return {
     title: params.title,
-    url: `https://x.com/luoleiorg/status/${encodeURIComponent(params.title)}`,
+    url: `https://x.com/shumrain/status/${encodeURIComponent(params.title)}`,
     text: params.text,
     date: params.date,
     dateTime: Date.now() - (params.daysAgo ?? 30) * 24 * 60 * 60 * 1000,
@@ -207,7 +207,7 @@ test("runtime context should include current article full text for article-scope
   const currentArticle: CurrentArticleContext = {
     slug: "digital-nomad-ids",
     title: "实现 AI 自由：我为未来准备的 4 个数字通行证",
-    url: "https://luolei.org/digital-nomad-ids",
+    url: "https://shumrain-blog.shumrainchen.workers.dev/digital-nomad-ids",
     summary: "围绕数字通行证的配置思路。",
     keyPoints: ["海外手机号", "国际邮箱", "虚拟信用卡"],
     categories: ["ai", "digital-nomad"],
@@ -263,7 +263,7 @@ test("runtime context should expose provenance layers and expected answer mode",
     projects: [
       {
         name: "Raycast Sink",
-        url: "https://github.com/foru17/raycast-sink",
+        url: "https://github.com/ShumRain/raycast-sink",
         description: "基于 Cloudflare Sink 的 Raycast 插件。",
       },
     ],

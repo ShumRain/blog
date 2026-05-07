@@ -34,7 +34,7 @@ export function AuthorAvatar({
   return (
     <div className="relative shrink-0" style={{ width: size, height: size }}>
       <Image
-        src="/images/avatar.jpg"
+        src="/images/avatar.svg"
         alt={siteConfig.author.name}
         width={size}
         height={size}

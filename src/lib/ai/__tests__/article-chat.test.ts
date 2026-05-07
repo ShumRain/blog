@@ -11,7 +11,7 @@ import {
 const currentArticle: CurrentArticleContext = {
   slug: "digital-nomad-ids",
   title: "实现 AI 自由：我为未来准备的 4 个数字通行证",
-  url: "https://luolei.org/digital-nomad-ids",
+  url: "https://shumrain-blog.shumrainchen.workers.dev/digital-nomad-ids",
   summary: "作者分享为实现 AI 自由准备的 4 个数字通行证，包括海外手机号、国际邮箱、虚拟信用卡和海外身份验证工具。",
   keyPoints: ["海外手机号", "国际邮箱", "虚拟信用卡", "海外身份验证工具"],
   categories: ["ai", "digital-nomad"],

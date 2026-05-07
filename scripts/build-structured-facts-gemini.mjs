@@ -347,7 +347,7 @@ function aggregateStructuredFacts(posts, results) {
     const item = {
       date: post.date,
       title: post.title,
-      url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://luolei.org"}/${post.slug}`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://shumrain-blog.shumrainchen.workers.dev"}/${post.slug}`,
     };
 
     for (const loc of result.visited) {
@@ -431,7 +431,7 @@ function aggregateStructuredFacts(posts, results) {
       if (!raceMap.has(key)) {
         raceMap.set(key, {
           ...race,
-          postUrl: `${process.env.NEXT_PUBLIC_SITE_URL || "https://luolei.org"}/${post.slug}`,
+          postUrl: `${process.env.NEXT_PUBLIC_SITE_URL || "https://shumrain-blog.shumrainchen.workers.dev"}/${post.slug}`,
         });
       }
     }
@@ -454,7 +454,7 @@ function aggregateStructuredFacts(posts, results) {
           value: val,
           mode: "approx_public_record",
           sourceTitle: post.title,
-          sourceUrl: `${process.env.NEXT_PUBLIC_SITE_URL || "https://luolei.org"}/${post.slug}`,
+          sourceUrl: `${process.env.NEXT_PUBLIC_SITE_URL || "https://shumrain-blog.shumrainchen.workers.dev"}/${post.slug}`,
           sourceDate: post.date,
         };
       }
@@ -464,7 +464,7 @@ function aggregateStructuredFacts(posts, results) {
       roundupPosts.push({
         title: post.title,
         date: post.date,
-        url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://luolei.org"}/${post.slug}`,
+        url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://shumrain-blog.shumrainchen.workers.dev"}/${post.slug}`,
         bookCount: result.books.length,
         books: result.books.slice(0, 8),
       });

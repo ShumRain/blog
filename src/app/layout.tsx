@@ -1,13 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { siteConfig } from "@/lib/site-config";
-import { AIChatBox } from "@/components/ai-chat-box";
-import { AIChatProvider } from "@/components/ai-chat-provider";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ThemeColorMeta } from "@/components/theme-color-meta";
-import { UmamiScript } from "@/components/umami-script";
-import { GoogleAnalyticsScript } from "@/components/google-analytics-script";
 import { RouteTransitionProgress } from "@/components/route-transition-progress";
 import { getThemeBootstrapScript } from "@/lib/theme";
 
@@ -35,16 +31,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: `@${siteConfig.author.twitterUsername}`,
-    creator: `@${siteConfig.author.twitterUsername}`,
   },
   icons: {
     icon: [
-      { url: "/legacy/favicon.ico", sizes: "32x32" },
-      { url: "/legacy/favicon.png", type: "image/png", sizes: "256x256" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
     ],
     apple: [
-      { url: "/legacy/favicon.png", sizes: "180x180", type: "image/png" },
+      { url: "/favicon.svg", sizes: "180x180", type: "image/svg+xml" },
     ],
   },
   appleWebApp: {
@@ -89,13 +82,7 @@ const structuredData = JSON.stringify({
     "@type": "Person",
     name: siteConfig.author.name,
     url: siteConfig.siteUrl,
-    sameAs: [
-      siteConfig.social.github,
-      `https://x.com/${siteConfig.author.twitterUsername}`,
-      siteConfig.social.youtube,
-      siteConfig.social.bilibili,
-      `https://unsplash.com/@${siteConfig.author.unsplash}`,
-    ],
+    sameAs: [siteConfig.social.github],
   },
 });
 
@@ -110,11 +97,6 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <link rel="manifest" href="/manifest.json" />
         <ThemeColorMeta />
-        <script
-          src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
-          async
-          defer
-        />
       </head>
       <body className="flex min-h-screen flex-col antialiased pt-[60px]">
         <RouteTransitionProgress />
@@ -122,14 +104,9 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: structuredData }}
         />
-        <AIChatProvider>
-          <SiteHeader />
-          <div className="flex-1">{children}</div>
-          <SiteFooter />
-          <AIChatBox />
-        </AIChatProvider>
-        <GoogleAnalyticsScript />
-        <UmamiScript />
+        <SiteHeader />
+        <div className="flex-1">{children}</div>
+        <SiteFooter />
       </body>
     </html>
   );

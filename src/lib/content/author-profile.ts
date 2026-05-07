@@ -291,7 +291,7 @@ export function getMultiModelProfileData(): MultiModelProfileData {
       },
       report: {
         hero: {
-          title: "AI 视角下的罗磊",
+          title: "AI 视角下的ShumRain",
           summary:
             "一个把技术折腾、工具优化和生活方式都写进博客的前端开发者。",
         },

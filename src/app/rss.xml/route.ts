@@ -109,7 +109,7 @@ export async function GET() {
     items.push(`<item><title><![CDATA[${post.title}]]></title><link>${siteConfig.siteUrl}/${post.slug}</link><guid>${siteConfig.siteUrl}/${post.slug}</guid><pubDate>${new Date(post.dateTime).toUTCString()}</pubDate><description><![CDATA[${post.excerpt}]]></description><content:encoded><![CDATA[${fullHtml}]]></content:encoded></item>`);
   }
 
-  const rss = `<?xml version="1.0" encoding="UTF-8" ?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title><![CDATA[${siteConfig.title}]]></title><description><![CDATA[${siteConfig.description}]]></description><link>${siteConfig.siteUrl}</link><language>zh-CN</language><lastBuildDate>${new Date().toUTCString()}</lastBuildDate><image><title>${escapeXml(siteConfig.title)}</title><url>${siteConfig.siteUrl}/logo.jpg</url><link>${siteConfig.siteUrl}</link></image>${items.join("")}</channel></rss>`;
+  const rss = `<?xml version="1.0" encoding="UTF-8" ?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title><![CDATA[${siteConfig.title}]]></title><description><![CDATA[${siteConfig.description}]]></description><link>${siteConfig.siteUrl}</link><language>zh-CN</language><lastBuildDate>${new Date().toUTCString()}</lastBuildDate><image><title>${escapeXml(siteConfig.title)}</title><url>${siteConfig.siteUrl}/logo.svg</url><link>${siteConfig.siteUrl}</link></image>${items.join("")}</channel></rss>`;
 
   return new Response(rss, {
     headers: {

@@ -85,8 +85,8 @@ export async function GET(request: Request, { params }: RouteContext) {
   const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=0&format=png&data=${encodeURIComponent(articleUrl)}`;
 
   const [logoSrc, avatarSrc, coverSrc, qrSrc] = await Promise.all([
-    fetchAsDataUrl(toAbsoluteUrl("/legacy/logo.png", assetBaseUrl)),
-    fetchAsDataUrl(toAbsoluteUrl("/images/avatar.jpg", assetBaseUrl)),
+    fetchAsDataUrl(toAbsoluteUrl("/logo.svg", assetBaseUrl)),
+    fetchAsDataUrl(toAbsoluteUrl("/images/avatar.svg", assetBaseUrl)),
     fetchAsDataUrl(coverUrl),
     fetchAsDataUrl(qrUrl),
   ]);

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
-import { AIChatTrigger } from "@/components/ai-chat-box";
 import { ArticleList } from "@/components/article-list";
 import { CategoryNav } from "@/components/category-nav";
 import { PaginationNav } from "@/components/pagination-nav";
@@ -84,12 +83,7 @@ export default async function Home({ searchParams }: HomePageProps) {
     <main className="pb-8 pt-2">
       <RouteTransitionComplete />
       <CategoryNav />
-      <AIChatTrigger />
-      <ArticleList
-        posts={listing.visiblePosts}
-        hitsMap={listing.hitsMap}
-        hitsLoading={listing.hitsLoading}
-      />
+      <ArticleList posts={listing.visiblePosts} />
       <PaginationNav page={listing.page} pageTotal={listing.pageTotal} />
     </main>
   );

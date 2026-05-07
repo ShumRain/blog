@@ -59,7 +59,7 @@ function InlineBlogLink({
       className="inline-flex items-baseline gap-1 text-zinc-900 underline decoration-zinc-300 underline-offset-2 transition-colors hover:decoration-zinc-500 dark:text-zinc-100 dark:decoration-zinc-600 dark:hover:decoration-zinc-400"
     >
       <Image
-        src="/legacy/favicon.png"
+        src="/logo.svg"
         alt=""
         width={14}
         height={14}

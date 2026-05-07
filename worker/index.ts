@@ -7,14 +7,7 @@ interface Env {
   ASSETS: {
     fetch(input: Request | URL | string, init?: RequestInit): Promise<Response>;
   };
-  IMAGES: {
-    input(stream: ReadableStream<Uint8Array>): {
-      transform(options: { width?: number; height?: number; fit?: string }): {
-        output(options: { format: string; quality: number }): Promise<{ response(): Response }>;
-      };
-    };
-  };
-  CACHE_KV: KVNamespace;
+  CACHE_KV?: KVNamespace;
   // 可选：Umami API Token（如果需要认证访问统计数据）
   UMAMI_API_TOKEN?: string;
 }

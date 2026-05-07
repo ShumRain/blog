@@ -4,7 +4,6 @@ import matter from "gray-matter";
 
 const postsDir = path.resolve(process.cwd(), "content/posts");
 const outputFile = path.resolve(process.cwd(), "public/search-index.json");
-const cfImageProxyHost = "https://img.is26.com";
 
 function listMarkdownFiles(dir) {
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -53,17 +52,7 @@ function getPreviewImage(url) {
   if (source.startsWith("data:") || source.startsWith("blob:")) return source;
   if (source.startsWith("/") && !source.startsWith("//")) return source;
 
-  const normalized = source.startsWith("//") ? `https:${source}` : source;
-  const stripTransform = normalized.replace(/\/w=[^/?#]+(?:,[^/?#]+)*$/, "");
-
-  if (stripTransform.startsWith(`${cfImageProxyHost}/`)) {
-    return `${stripTransform}/w=320`;
-  }
-
-  const raw = normalized.startsWith("http")
-    ? normalized
-    : normalized.replace(/^\/+/, "");
-  return `${cfImageProxyHost}/${raw}/w=320`;
+  return source.startsWith("//") ? `https:${source}` : source;
 }
 
 if (!fs.existsSync(postsDir)) {

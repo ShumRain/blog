@@ -23,19 +23,19 @@ const POSTS_DIR = path.join(ROOT_DIR, "content", "posts");
 const SOURCES_DIR = path.join(DATA_DIR, "sources");
 const OUTPUT_FILE = path.join(DATA_DIR, "author-context.json");
 
-const DEFAULT_SITE_URL = "https://luolei.org";
-const DEFAULT_USERNAME = "luoleiorg";
+const DEFAULT_SITE_URL = "https://shumrain-blog.shumrainchen.workers.dev";
+const DEFAULT_USERNAME = "shumrain";
 const MAX_RECENT_POSTS = 400;
 const MAX_HOT_POSTS = 100;
 const MAX_TWEETS = 1000;
 const MAX_PROJECTS = 10;
 const TWEET_CACHE_MAX_AGE_DAYS = 7;
-const GITHUB_PROFILE_REPO = "foru17/foru17";
+const GITHUB_PROFILE_REPO = "ShumRain/ShumRain";
 const GITHUB_RAW_URL = `https://raw.githubusercontent.com/${GITHUB_PROFILE_REPO}/main`;
 const GITHUB_RESUME_FILE = path.join(DATA_DIR, "github-resume.json");
 
-const UMAMI_API_URL = "https://u.is26.com/api";
-const UMAMI_WEBSITE_ID = "185ef031-29b2-49e3-bc50-1c9f80b4e831";
+const UMAMI_API_URL = "https://example.com/api";
+const UMAMI_WEBSITE_ID = "";
 
 const CATEGORY_LABELS = {
   code: "编程开发",
@@ -930,7 +930,7 @@ async function collectTweets() {
 async function fetchGithubRaw(filename) {
   const url = `${GITHUB_RAW_URL}/${filename}`;
   const res = await fetch(url, {
-    headers: { "User-Agent": "luoleiorg-context-builder" },
+    headers: { "User-Agent": "shumrain-context-builder" },
     signal: AbortSignal.timeout(15_000),
   });
   if (!res.ok) throw new Error(`HTTP ${res.status} for ${filename}`);
@@ -991,25 +991,25 @@ function parseGithubProfile(readmeMd, resumeMd) {
   // ─ Social links from both files
   const allLinks = { ...parseMdLinks(resumeMd), ...parseMdLinks(readmeMd) };
   const social = {
-    github: "https://github.com/foru17",
-    x: "https://x.com/luoleiorg",
+    github: "https://github.com/ShumRain",
+    x: "https://x.com/shumrain",
     youtube: "https://zuoluo.tv/youtube",
     bilibili: "https://zuoluo.tv/bilibili",
-    blog: "https://luolei.org",
+    blog: "https://shumrain-blog.shumrainchen.workers.dev",
     instagram: "",
     unsplash: "",
     telegram: "",
     linkedin: "",
-    email: "i@luolei.org",
+    email: "i@shumrain-blog.shumrainchen.workers.dev",
   };
   for (const [label, url] of Object.entries(allLinks)) {
     const ll = label.toLowerCase();
     // 跳过 badge/统计图片 URL，避免污染 social 链接
-    if (url.includes("badge.is26.com") || url.includes("komarev.com")) continue;
+    if (url.includes("badge.example.com") || url.includes("komarev.com")) continue;
     if (url.includes("x.com") || ll.includes("twitter") || ll.includes("twitter:")) social.x = url;
     else if (ll.includes("youtube") || url.includes("zuoluo.tv/youtube")) social.youtube = url;
     else if (ll.includes("bilibili")) social.bilibili = url;
-    else if (ll.includes("blog") || ll.includes("博客") || (url.includes("luolei.org") && !url.includes("mailto"))) social.blog = url;
+    else if (ll.includes("blog") || ll.includes("博客") || (url.includes("shumrain-blog.shumrainchen.workers.dev") && !url.includes("mailto"))) social.blog = url;
     else if (ll.includes("instagram")) social.instagram = url;
     else if (ll.includes("unsplash")) social.unsplash = url;
     else if (ll.includes("telegram") || ll.includes("telegram 频道")) social.telegram = url;
@@ -1138,7 +1138,7 @@ function parseGithubProfile(readmeMd, resumeMd) {
       fetchedAt: new Date().toISOString(),
     },
     profile: {
-      name: "罗磊",
+      name: "ShumRain",
       nameEn,
       headline,
       location: "Shenzhen, China",
@@ -1292,14 +1292,14 @@ async function main() {
     $schema: "author-context-v2",
     generatedAt: new Date().toISOString(),
     profile: {
-      name: github.profile?.name ?? "罗磊",
+      name: github.profile?.name ?? "ShumRain",
       headline:
         github.profile?.headline ??
         "全栈开发者 / 内容创作者 / 数字游民实践者",
       location: github.profile?.location ?? "Shenzhen, China",
       social: github.profile?.social ?? {
-        github: "https://github.com/foru17",
-        x: "https://x.com/luoleiorg",
+        github: "https://github.com/ShumRain",
+        x: "https://x.com/shumrain",
         youtube: "https://zuoluo.tv/youtube",
         blog: siteUrl,
       },

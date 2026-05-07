@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">ShumRain Blog</title>
+  <desc id="desc">A simple S mark for ShumRain Blog.</desc>
+  <rect width="256" height="256" rx="56" fill="#111827"/>
+  <path d="M68 152c13 24 35 36 67 36 35 0 57-17 57-43 0-22-14-35-46-42l-29-6c-18-4-27-11-27-23 0-14 13-23 33-23 24 0 41 10 50 29l18-12c-12-24-35-38-67-38-34 0-56 18-56 45 0 22 15 36 45 42l29 6c19 4 28 11 28 23 0 14-14 22-36 22-25 0-43-10-52-29z" fill="#f8fafc"/>
+  <path d="M62 202c37 18 95 18 132 0" fill="none" stroke="#38bdf8" stroke-width="12" stroke-linecap="round"/>
+</svg>

@@ -194,7 +194,7 @@ function main() {
   const profile = {
     $schema: "voice-profile-v1",
     generatedAt: new Date().toISOString(),
-    author: "罗磊",
+    author: "ShumRain",
     overall_tone: {
       description: "随性但有料，技术话题务实不炫技，生活话题真实不矫情",
       primary_persona: "独立开发者 + 科技生活博主",

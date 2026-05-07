@@ -498,7 +498,7 @@ function buildSystemPrompt() {
 
 ## 写作要求
 
-1. hero.title 为"AI 视角下的罗磊"。
+1. hero.title 为"AI 视角下的ShumRain"。
 2. hero.summary 一句话概括，带动作和场景（见上"个人色彩"）。
 3. hero.intro 展开介绍 2-3 句，至少包含 1 个非技术方向。
 4. identities 是"他在关注和投入的方向"，命名自然具体（见上"个人色彩"）。
@@ -527,7 +527,7 @@ function buildSystemPrompt() {
 输出 schema:
 {
   "report": {
-    "hero": {"title":"AI 视角下的罗磊","summary":"一句话概括（有动作有画面）","intro":"2-3句展开介绍"},
+    "hero": {"title":"AI 视角下的ShumRain","summary":"一句话概括（有动作有画面）","intro":"2-3句展开介绍"},
     "identities":[{"name":"关注方向（自然命名）","description":"他在这个方向上做了什么","evidence":"支撑依据（自然语言，不放URL）","link":"最相关的一个URL"}],
     "strengths":[{"title":"做事方式类别","points":["方式1","方式2","方式3"]}],
     "styles":[{"trait":"会注意到的特点","description":"具体场景描述（有画面感）"}],
@@ -645,7 +645,7 @@ function buildUserPrompt(context) {
   // 个人简介
   const p = context.profile ?? {};
   sections.push(`## 个人简介
-姓名: ${p.name ?? "罗磊"} (${p.nameEn ?? "Luo Lei"})
+姓名: ${p.name ?? "ShumRain"} (${p.nameEn ?? "Luo Lei"})
 头衔: ${p.headline ?? ""}
 简介: ${p.bio ?? ""}
 位置: ${p.location ?? ""}`);
@@ -922,7 +922,7 @@ function buildRuleBasedReport(context) {
     },
     report: {
       hero: {
-        title: "AI 视角下的罗磊",
+        title: "AI 视角下的ShumRain",
         summary:
           "一边写代码做开源，一边把网络、工具、旅行和生活方式都写进博客里。",
         intro: `从他近期的内容来看，最集中的方向是：${highLevelTopic}。`,
@@ -934,7 +934,7 @@ function buildRuleBasedReport(context) {
           evidence: majorProjectNames
             ? `从 GitHub 来看，${majorProjectNames} 是比较有代表性的项目。`
             : "博客中持续出现编程与工具类文章。",
-          link: "https://github.com/foru17",
+          link: "https://github.com/ShumRain",
         },
         {
           name: "工具与效率",
@@ -942,7 +942,7 @@ function buildRuleBasedReport(context) {
           evidence: posts[0]
             ? `比如最近的文章《${posts[0].title}》就涉及了相关主题。`
             : "博客长期保持对效率工具的讨论。",
-          link: "https://luolei.org",
+          link: "https://shumrain-blog.shumrainchen.workers.dev",
         },
         {
           name: "旅行与生活方式",

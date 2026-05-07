@@ -33,7 +33,7 @@ test("fact answers without known citations should append one direct source", () 
   const projects: ProjectContext[] = [
     {
       name: "Neko Master",
-      url: "https://github.com/foru17/neko-master",
+      url: "https://github.com/ShumRain/neko-master",
       description: "开源家庭网络流量分析工具，支持 ClickHouse 和 AI 工作流。",
     },
   ];
@@ -46,13 +46,13 @@ test("fact answers without known citations should append one direct source", () 
     projects,
   });
 
-  assert.match(result.text, /相关项目：\[Neko Master\]\(https:\/\/github\.com\/foru17\/neko-master\)/u);
+  assert.match(result.text, /相关项目：\[Neko Master\]\(https:\/\/github\.com\/ShumRain\/neko-master\)/u);
   assert.deepEqual(result.actions, [
     {
       type: "append_direct_source_citation",
       sourceKind: "project",
       sourceTitle: "Neko Master",
-      sourceUrl: "https://github.com/foru17/neko-master",
+      sourceUrl: "https://github.com/ShumRain/neko-master",
     },
   ]);
 });
@@ -61,14 +61,14 @@ test("travel yes-no fact answers should fall back to the strongest direct source
   const articles: ArticleContext[] = [
     {
       title: "大陆居民申请尼泊尔签证（香港领事馆）2014最新攻略",
-      url: "https://luolei.org/da-lu-ju-min-shen-qing-ni-bo-er-qian-zheng-xiang-gang-ling-shi-guan-2014zui-xin-gong-lue",
+      url: "https://shumrain-blog.shumrainchen.workers.dev/da-lu-ju-min-shen-qing-ni-bo-er-qian-zheng-xiang-gang-ling-shi-guan-2014zui-xin-gong-lue",
       summary: "作者分享尼泊尔签证办理流程和领事馆加急经验。",
       keyPoints: ["加急办理", "香港领事馆"],
       categories: [],
     },
     {
       title: "「等风来:博卡拉滑翔伞飞翔」尼泊尔随记(贰)",
-      url: "https://luolei.org/trave-in-nepal-paragliding",
+      url: "https://shumrain-blog.shumrainchen.workers.dev/trave-in-nepal-paragliding",
       summary: "作者记录尼泊尔博卡拉滑翔伞体验，从电影《等风来》引入。",
       keyPoints: ["博卡拉滑翔伞统一收费8000卢比"],
       categories: ["travel"],
@@ -78,7 +78,7 @@ test("travel yes-no fact answers should fall back to the strongest direct source
   const result = applyCitationGuard({
     userQuery: "你去过尼泊尔吗？",
     answerText:
-      "去过，而且去了不止一次。\n\n最经典的是 [EBC（珠峰大本营）徒步](https://luolei.org/ebc-trekking)。",
+      "去过，而且去了不止一次。\n\n最经典的是 [EBC（珠峰大本营）徒步](https://shumrain-blog.shumrainchen.workers.dev/ebc-trekking)。",
     articles,
     tweets: emptyTweets,
     projects: emptyProjects,
@@ -86,13 +86,13 @@ test("travel yes-no fact answers should fall back to the strongest direct source
 
   assert.match(result.text, /^去过。/u);
   assert.match(result.text, /博卡拉/u);
-  assert.match(result.text, /\[「等风来:博卡拉滑翔伞飞翔」尼泊尔随记\(贰\)\]\(https:\/\/luolei\.org\/trave-in-nepal-paragliding\)/u);
+  assert.match(result.text, /\[「等风来:博卡拉滑翔伞飞翔」尼泊尔随记\(贰\)\]\(https:\/\/shumrain\.org\/trave-in-nepal-paragliding\)/u);
   assert.deepEqual(result.actions, [
     {
       type: "replace_travel_fact_with_grounded_source",
       sourceKind: "article",
       sourceTitle: "「等风来:博卡拉滑翔伞飞翔」尼泊尔随记(贰)",
-      sourceUrl: "https://luolei.org/trave-in-nepal-paragliding",
+      sourceUrl: "https://shumrain-blog.shumrainchen.workers.dev/trave-in-nepal-paragliding",
     },
   ]);
 });
@@ -115,7 +115,7 @@ test("citation guard transform should stream text before appending citation", as
   const projects: ProjectContext[] = [
     {
       name: "Neko Master",
-      url: "https://github.com/foru17/neko-master",
+      url: "https://github.com/ShumRain/neko-master",
       description: "开源家庭网络流量分析工具，支持 ClickHouse 和 AI 工作流。",
     },
   ];

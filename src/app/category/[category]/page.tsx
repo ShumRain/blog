@@ -21,7 +21,7 @@ interface CategoryPageProps {
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  const categories = new Set<string>(["hot"]);
+  const categories = new Set<string>();
 
   for (const post of getAllPosts()) {
     for (const category of post.categories) {
@@ -99,11 +99,7 @@ export default async function CategoryPage({
     <main className="pb-8 pt-2">
       <RouteTransitionComplete />
       <CategoryNav currentCategory={normalizedCategory} />
-      <ArticleList
-        posts={listing.visiblePosts}
-        hitsMap={listing.hitsMap}
-        hitsLoading={listing.hitsLoading}
-      />
+      <ArticleList posts={listing.visiblePosts} />
       <PaginationNav
         category={normalizedCategory}
         page={listing.page}

@@ -1,12 +1,12 @@
 import { cache } from "react";
-import type { SearchDocument } from "@luoleiorg/search-core";
+import type { SearchDocument } from "@shumrain/search-core";
 import authorTweetsCache from "@/../data/author-tweets-cache.json";
 import {
   getAllTweetCardEntries,
   type TweetMetrics,
 } from "@/lib/content/tweet-card-cache";
 
-const DEFAULT_USERNAME = "luoleiorg";
+const DEFAULT_USERNAME = "ShumRain";
 const MAX_SEARCHABLE_TWEET_LENGTH = 1600;
 
 interface AuthorTimelineTweet {

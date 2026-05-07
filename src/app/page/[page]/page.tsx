@@ -54,11 +54,7 @@ export default async function PagePage({ params }: PagePageProps) {
     <main className="pb-8 pt-2">
       <RouteTransitionComplete />
       <CategoryNav />
-      <ArticleList
-        posts={listing.visiblePosts}
-        hitsMap={listing.hitsMap}
-        hitsLoading={listing.hitsLoading}
-      />
+      <ArticleList posts={listing.visiblePosts} />
       <PaginationNav page={listing.page} pageTotal={listing.pageTotal} />
     </main>
   );

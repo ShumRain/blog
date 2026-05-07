@@ -3,7 +3,7 @@
  *
  * 用法:
  *   source .env && node scripts/fetch-author-tweets.mjs
- *   source .env && node scripts/fetch-author-tweets.mjs --username=luoleiorg --max=300
+ *   source .env && node scripts/fetch-author-tweets.mjs --username=shumrain --max=300
  *   source .env && node scripts/fetch-author-tweets.mjs --include-replies
  *   source .env && node scripts/fetch-author-tweets.mjs --force  (忽略缓存，全量拉取)
  */
@@ -20,7 +20,7 @@ const TWEET_CACHE_MAX_AGE_DAYS = 7;
 function parseArgs() {
   const args = process.argv.slice(2);
   const flags = {
-    username: "luoleiorg",
+    username: "shumrain",
     max: 300,
     includeReplies: false,
     force: false,

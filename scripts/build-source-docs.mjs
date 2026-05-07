@@ -106,7 +106,7 @@ function buildTweetDocs() {
     return [];
   }
 
-  const username = tweetsData.user?.username || tweetsData.meta?.username || "luoleiorg";
+  const username = tweetsData.user?.username || tweetsData.meta?.username || "shumrain";
 
   return tweetsData.tweets.map((tweet) => {
     const date = tweet.created_at
@@ -165,7 +165,7 @@ function buildProjectDocs() {
       source_id: expToSourceId(exp.company, exp.period),
       source_type: "experience",
       title: `${exp.title} @ ${exp.company}`,
-      url: resume.profile?.social?.blog || "https://luolei.org",
+      url: resume.profile?.social?.blog || "https://shumrain-blog.shumrainchen.workers.dev",
       date: null,
       period: exp.period,
       company: exp.company,
@@ -181,7 +181,7 @@ function buildProjectDocs() {
       source_id: `highlight:${docs.length}`,
       source_type: "highlight",
       title: highlight.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").slice(0, 60),
-      url: resume.profile?.social?.blog || "https://luolei.org",
+      url: resume.profile?.social?.blog || "https://shumrain-blog.shumrainchen.workers.dev",
       date: null,
       text: highlight,
       provenance: "curated_public",
@@ -194,7 +194,7 @@ function buildProjectDocs() {
       source_id: `activity:${docs.length}`,
       source_type: "activity",
       title: activity.slice(0, 60),
-      url: resume.profile?.social?.blog || "https://luolei.org",
+      url: resume.profile?.social?.blog || "https://shumrain-blog.shumrainchen.workers.dev",
       date: null,
       text: activity,
       provenance: "curated_public",

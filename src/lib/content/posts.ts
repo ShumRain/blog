@@ -1,7 +1,7 @@
 import { cache } from "react";
 import matter from "gray-matter";
 import readingTime from "reading-time";
-import type { SearchDocument } from "@luoleiorg/search-core";
+import type { SearchDocument } from "@shumrain/search-core";
 import type { PostDetail, PostFrontmatter, PostItem } from "./types";
 import { getAISummary } from "./ai-data";
 import { renderPostHtml } from "./post-markdown";

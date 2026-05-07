@@ -26,7 +26,7 @@ const internalHostnames = (() => {
       ? new Set([host, host.slice(4)])
       : new Set([host, `www.${host}`]);
   } catch {
-    return new Set<string>(["luolei.org", "www.luolei.org"]);
+    return new Set<string>(["shumrain-blog.shumrainchen.workers.dev", "shumrain-blog.shumrainchen.workers.dev"]);
   }
 })();
 

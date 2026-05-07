@@ -2,13 +2,13 @@ import fs from "node:fs";
 import path from "node:path";
 
 const projectRoot = process.cwd();
-const legacyRoot = path.resolve(projectRoot, "../luoleiorg/docs");
+const legacyRoot = path.resolve(projectRoot, "../shumrain/docs");
 const targetRoot = path.resolve(projectRoot, "content/posts");
-const legacyPublicRoot = path.resolve(projectRoot, "../luoleiorg/docs/public");
+const legacyPublicRoot = path.resolve(projectRoot, "../shumrain/docs/public");
 const targetPublicLegacyRoot = path.resolve(projectRoot, "public/legacy");
 const legacyIconsRoot = path.resolve(
   projectRoot,
-  "../luoleiorg/docs/.vitepress/theme/icons",
+  "../shumrain/docs/.vitepress/theme/icons",
 );
 const targetIconsRoot = path.resolve(projectRoot, "public/icons");
 

@@ -47,10 +47,10 @@ const VALID_ANSWER_MODES = new Set([
 ]);
 
 const FIRST_PARTY_PUBLIC_URL_PATTERNS = [
-  /^https:\/\/luolei\.org\//i,
-  /^https:\/\/x\.com\/luoleiorg\//i,
-  /^https:\/\/twitter\.com\/luoleiorg\//i,
-  /^https:\/\/github\.com\/foru17\//i,
+  /^https:\/\/shumrain\.org\//i,
+  /^https:\/\/x\.com\/shumrain\//i,
+  /^https:\/\/twitter\.com\/shumrain\//i,
+  /^https:\/\/github\.com\/ShumRain\//i,
 ];
 
 const CASE_LEVEL_SOURCE_SUPPORT = {

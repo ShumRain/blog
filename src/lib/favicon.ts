@@ -1,8 +1,6 @@
-const FAVICON_PROXY_BASE_URL = "https://img.is26.com/static.is26.com/favicon";
-
 export function getFaviconUrlForDomain(domain: string): string {
   const normalizedDomain = domain.trim().toLowerCase();
-  return `${FAVICON_PROXY_BASE_URL}/${normalizedDomain}`;
+  return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(normalizedDomain)}&sz=32`;
 }
 
 export function getFaviconUrlForSite(siteUrl: string): string | null {

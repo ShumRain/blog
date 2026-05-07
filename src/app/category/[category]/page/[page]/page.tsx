@@ -23,10 +23,9 @@ export function generateStaticParams() {
   const allPosts = getAllPosts();
 
   return categoryMap.flatMap((category) => {
-    const totalPosts =
-      category.text === "hot"
-        ? allPosts.length
-        : allPosts.filter((post) => post.categories.includes(category.text)).length;
+    const totalPosts = allPosts.filter((post) =>
+      post.categories.includes(category.text),
+    ).length;
     const totalPages = Math.ceil(totalPosts / articlePageSize);
 
     return Array.from({ length: Math.max(0, totalPages - 1) }, (_, index) => ({
@@ -106,11 +105,7 @@ export default async function CategoryPagedPage({ params }: CategoryPagedPagePro
     <main className="pb-8 pt-2">
       <RouteTransitionComplete />
       <CategoryNav currentCategory={normalizedCategory} />
-      <ArticleList
-        posts={listing.visiblePosts}
-        hitsMap={listing.hitsMap}
-        hitsLoading={listing.hitsLoading}
-      />
+      <ArticleList posts={listing.visiblePosts} />
       <PaginationNav
         category={normalizedCategory}
         page={listing.page}

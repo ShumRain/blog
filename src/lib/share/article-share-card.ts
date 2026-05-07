@@ -341,7 +341,7 @@ export function buildArticleShareCardSvg(
           : ""
       }
       <text x="148" y="120" fill="${palette.title}" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif" font-size="24" font-weight="700">${escapeXml(siteConfig.title)}</text>
-      <text x="148" y="146" fill="${palette.meta}" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif" font-size="18">luolei.org</text>
+      <text x="148" y="146" fill="${palette.meta}" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif" font-size="18">${escapeXml(new URL(siteConfig.siteUrl).hostname)}</text>
 
       <line x1="88" y1="170" x2="992" y2="170" stroke="${palette.divider}" />
 
@@ -360,7 +360,7 @@ export function buildArticleShareCardSvg(
           `
           : ""
       }
-      <text x="910" y="118" fill="${palette.title}" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="700" text-anchor="end">罗磊</text>
+      <text x="910" y="118" fill="${palette.title}" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif" font-size="16" font-weight="700" text-anchor="end">${escapeXml(siteConfig.author.name)}</text>
       <text x="910" y="142" fill="${palette.meta}" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif" font-size="14" text-anchor="end">文章分享</text>
 
       ${coverMarkup}

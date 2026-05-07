@@ -201,7 +201,7 @@ const html = `<!DOCTYPE html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>罗磊的博客文章合集</title>
+  <title>ShumRain的博客文章合集</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -337,8 +337,8 @@ const html = `<!DOCTYPE html>
 <body>
 
 <div class="cover-page">
-  <h1>罗磊博客文章合集</h1>
-  <p>luolei.org</p>
+  <h1>ShumRain博客文章合集</h1>
+  <p>shumrain-blog.shumrainchen.workers.dev</p>
   <p>共 ${posts.length} 篇文章</p>
   <p>导出日期：${new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
   <p>时间范围：${posts[posts.length-1]?.date?.toString()?.slice(0,10) || ''} — ${posts[0]?.date?.toString()?.slice(0,10) || ''}</p>

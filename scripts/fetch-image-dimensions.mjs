@@ -22,10 +22,10 @@ const IMAGE_REGEX = /!\[[^\]]*\]\(([^)]+)\)/g;
 // 需要获取尺寸的图片域名白名单
 // 这些域名的图片可以通过 HTTP HEAD 请求获取尺寸
 const SUPPORTED_DOMAINS = [
-  "c2.is26.com",
-  "img.is26.com",
-  "cdn.is26.com",
-  "wp-image.is26.com",
+  "media.example.com",
+  "images.example.com",
+  "cdn.example.com",
+  "wp-image.example.com",
 ];
 
 /**
@@ -98,9 +98,9 @@ async function fetchImageDimensions(url) {
       ? `https:${normalizedUrl}`
       : normalizedUrl;
 
-    // 使用 img.is26.com 的缩略图 API 获取小尺寸图片来检测
+    // 使用 images.example.com 的缩略图 API 获取小尺寸图片来检测
     // 添加 w=100 参数获取小图，减少带宽
-    const probeUrl = fullUrl.includes("img.is26.com")
+    const probeUrl = fullUrl.includes("images.example.com")
       ? `${fullUrl}/w=100`
       : fullUrl;
 
